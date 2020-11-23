@@ -31,7 +31,7 @@ public class ProuductsController {
         return productRepo.findAll();
     }
     //get one product by ID
-    @GetMapping("/{id}")
+    @GetMapping("`/{id}")
     public Optional<Product> getProductById(@PathVariable Long id){
         return productRepo.findById(id);
     }
@@ -61,17 +61,17 @@ public class ProuductsController {
         return productRepo.findAll();
     }
     //update product info;
-    @PutMapping("/update/{id}")
-    public List<Product> updateProduct(@RequestBody Product pro, @PathVariable Long id){
-        Product nonUpdated_Product= productRepo.findById(id).orElse(null);
-        nonUpdated_Product.setProductImgUrl(pro.getProductImgUrl());
-        nonUpdated_Product.setAgencyName(pro.getAgencyName());
-        nonUpdated_Product.setProductName(pro.getProductName());
-        nonUpdated_Product.setProductType(pro.getProductType());
-        productRepo.delete(nonUpdated_Product);
-        productRepo.save(nonUpdated_Product);
-        return productRepo.findAll();
-    }
+//    @PutMapping("/update/{id}")
+//    public List<Product> updateProduct(@RequestBody Product pro, @PathVariable Long id){
+//        Product nonUpdated_Product= productRepo.findById(id).orElse(null);
+//        nonUpdated_Product.setProductImgUrl(pro.getProductImgUrl());
+//        nonUpdated_Product.setAgencyName(pro.getAgencyName());
+//        nonUpdated_Product.setProductName(pro.getProductName());
+//        nonUpdated_Product.setProductType(pro.getProductType());
+//        productRepo.delete(nonUpdated_Product);
+//        productRepo.save(nonUpdated_Product);
+//        return productRepo.findAll();
+//    }
 
 }
 

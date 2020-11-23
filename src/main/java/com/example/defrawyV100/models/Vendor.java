@@ -2,6 +2,7 @@ package com.example.defrawyV100.models;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 public class Vendor {
@@ -14,26 +15,42 @@ public class Vendor {
     private String vendorPassword;
     private int vendorPhoneNumber;
 
-    public Vendor(List<Product> product) {
-        this.product = product;
+    public UUID getInvitationCode() {
+        return invitationCode;
     }
-
-    @OneToMany(targetEntity = Product.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "vendor")
-    private List<Product> product;
-
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID invitationCode;
 
 
-    public Vendor(Long vendorId, String vendorName, String vendorPassword, int vendorPhoneNumber, List<Product> product) {
-        this.vendorId = vendorId;
-        this.vendorName = vendorName;
-        this.vendorPassword = vendorPassword;
-        this.vendorPhoneNumber = vendorPhoneNumber;
-        this.product = product;
-    }
+//    @OneToMany(targetEntity = Product.class,cascade = CascadeType.ALL,fetch = FetchType.EAGER, mappedBy = "vendor")
+//    private List<Product> product;
 
     public Vendor() {
 
     }
+
+
+
+    public Vendor(Long vendorId, String vendorName, String vendorPassword, int vendorPhoneNumber, UUID invitationCode) {
+        this.vendorId = vendorId;
+        this.vendorName = vendorName;
+        this.vendorPassword = vendorPassword;
+        this.vendorPhoneNumber = vendorPhoneNumber;
+        this.invitationCode = invitationCode;
+
+    }
+
+    public void setInvitationCode(UUID invitationCode) {
+        this.invitationCode = invitationCode;
+    }
+
+//    public Vendor(Long vendorId, String vendorName, String vendorPassword, int vendorPhoneNumber, List<Product> product) {
+//        this.vendorId = vendorId;
+//        this.vendorName = vendorName;
+//        this.vendorPassword = vendorPassword;
+//        this.vendorPhoneNumber = vendorPhoneNumber;
+//        this.product = product;
+//    }
 
     public Long getVendorId() {
         return vendorId;
@@ -51,6 +68,8 @@ public class Vendor {
         return vendorPhoneNumber;
     }
 
+
+
     public void setVendorId(Long vendorId) {
         this.vendorId = vendorId;
     }
@@ -67,7 +86,5 @@ public class Vendor {
         this.vendorPhoneNumber = vendorPhoneNumber;
     }
 
-    public void setProduct(List<Product> product) {
-        this.product = product;
-    }
+
 }

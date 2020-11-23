@@ -17,23 +17,18 @@ public class Customer {
     private int customerPhoneNumber;
     @Column
     private int customerInvitationCode;
-    @Column
-    private Boolean customerBlockedState;
-    @OneToOne
-    private CustomerCart customerCart;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long cart_id;
 
-    public Customer()
-    {}
+    public Customer(){}
 
 
-    public Customer(Long customerID, String customerName, String customerPassword, int customerPhoneNumber, int customerInvitationCode, Boolean customerBlockedState, CustomerCart customerCart) {
+    public Customer(Long customerID, String customerName, String customerPassword, int customerPhoneNumber, int customerInvitationCode) {
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerPassword = customerPassword;
         this.customerPhoneNumber = customerPhoneNumber;
         this.customerInvitationCode = customerInvitationCode;
-        this.customerBlockedState = customerBlockedState;
-        this.customerCart = customerCart;
     }
 
     public Long getCustomerID() {
@@ -76,19 +71,4 @@ public class Customer {
         this.customerInvitationCode = customerInvitationCode;
     }
 
-    public Boolean getCustomerBlockedState() {
-        return customerBlockedState;
-    }
-
-    public void setCustomerBlockedState(Boolean customerBlockedState) {
-        this.customerBlockedState = customerBlockedState;
-    }
-
-    public CustomerCart getCustomerCard() {
-        return customerCart;
-    }
-
-    public void setCustomerCard(CustomerCart customerCart) {
-        this.customerCart = customerCart;
-    }
 }

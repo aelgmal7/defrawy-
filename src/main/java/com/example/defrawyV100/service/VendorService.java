@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class VendorService {
-    @Autowired
-    private VendorRepo vendorRepo;
-    public void setVendorProducts(){
-        Vendor byId = vendorRepo.findById(2L).orElse(null);
-        Product product = new Product();
-         Product product1 = new Product();
-
-        List<Product> products = Arrays.asList(product, product1);
-        byId.setProduct(products);
-
-    }
+//    @Autowired
+//    private VendorRepo vendorRepo;
+////    public void setVendorProducts(){
+////        Vendor byId = vendorRepo.findById(2L).orElse(null);
+////        Product product = new Product();
+////         Product product1 = new Product();
+////
+//////        List<Product> products = Arrays.asList(product, product1);
+//////        byId.setProduct(products);
+//
+//    }
 }

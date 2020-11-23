@@ -6,13 +6,14 @@ import java.util.List;
 @Entity
 public class CustomerCart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Customer customer;
 
-    @OneToMany(targetEntity = Product.class,cascade = CascadeType.ALL)
-    @JoinColumn(name = "cart_fk",referencedColumnName ="id")
+    @ManyToMany(targetEntity =Product.class,cascade = CascadeType.ALL)
+    @JoinColumn(referencedColumnName ="id")
     private List<Product> resrvedProduct;
 
     public CustomerCart(){};
@@ -21,4 +22,5 @@ public class CustomerCart {
         this.customer = customer;
         this.resrvedProduct = resrvedProduct;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.defrawyV100.models;
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Product {
@@ -9,22 +10,28 @@ public class Product {
     private String productName;
     private  String productType;
     private String productImgUrl;
-    private String agencyName;
+    private boolean onSaleState;
     private int reservationCounter;
-    private int saleRatio;
 
     @ManyToOne
     private  Vendor vendor;
 
-    public Product(Long productId, String productName, String productType, String productImgUrl, String agencyName, int reservationCounter, int saleRatio, Vendor vendor) {
+
+
+    @ManyToMany
+    private List<CustomerCart> customerCart;
+
+
+    public Product(){}
+    public Product(Long productId, String productName, String productType, String productImgUrl, int reservationCounter, boolean onSaleSate, Vendor vendor, List<CustomerCart> customerCart) {
         ProductId = productId;
         this.productName = productName;
         this.productType = productType;
         this.productImgUrl = productImgUrl;
-        this.agencyName = agencyName;
         this.reservationCounter = reservationCounter;
-        this.saleRatio = saleRatio;
+        this.onSaleState = onSaleSate;
         this.vendor = vendor;
+        this.customerCart = customerCart;
     }
 
     public void setProductId(Long productId) {
@@ -43,19 +50,26 @@ public class Product {
         this.productImgUrl = productImgUrl;
     }
 
-    public void setAgencyName(String agencyName) {
-        this.agencyName = agencyName;
-    }
 
     public void setReservationCounter(int reservationCounter) {
         this.reservationCounter = reservationCounter;
     }
 
-    public void setSaleRatio(int saleRatio) {
-        this.saleRatio = saleRatio;
+    public void setVendor(Vendor vendor) {
+        this.vendor = vendor;
     }
 
+    public void setOnSaleState(boolean onSaleState) {
+        this.onSaleState = onSaleState;
+    }
 
+    public List<CustomerCart> getCustomerCart() {
+        return customerCart;
+    }
+
+    public void setCustomerCart(List<CustomerCart> customerCart) {
+        this.customerCart = customerCart;
+    }
 
     public Long getProductId() {
         return ProductId;
@@ -73,35 +87,12 @@ public class Product {
         return productImgUrl;
     }
 
-    public String getAgencyName() {
-        return agencyName;
-    }
-
     public int getReservationCounter() {
         return reservationCounter;
-    }
-
-
-    public int getSaleRatio() {
-        return saleRatio;
-    }
-    public Product(){}
-
-    public Product( String productName, String productType, String productImgUrl, String agencyName, int reservationCounter,int saleRatio) {
-        this.productName = productName;
-        this.productType = productType;
-        this.productImgUrl = productImgUrl;
-        this.agencyName = agencyName;
-        this.reservationCounter = reservationCounter;
-        
-        this.saleRatio = saleRatio;
     }
 
     public Vendor getVendor() {
         return vendor;
     }
 
-    public void setVendor(Vendor vendor) {
-        this.vendor = vendor;
-    }
 }
